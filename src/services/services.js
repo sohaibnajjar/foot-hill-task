@@ -24,10 +24,4 @@ export const imageList = async (dispatch, search) => {
   dispatch(fetchDestinations(apiState));
 };
 
-export const locations = [
-  "camping",
-  "hiking",
-  "fishing",
-  "nature",
-  "luxury hotel",
-];
+export const locations = ["camping", "hiking", "fishing", "nature", "hotel"];

@@ -8,7 +8,7 @@ import {
   FlexSpaceBetween,
 } from "../styled.components/styled.components";
 import { Colors } from "../styled.components/colors";
-import { imageList } from "../services/services";
+import { imageList, locations } from "../services/services";
 
 const CardContainer = styled.div`
   margin: 20px;
@@ -57,6 +57,25 @@ const CardState = styled.div`
   font-weight: bold;
   border-radius: 10px;
 `;
+const LoactionContainer = styled.ul`
+  display: flex;
+  list-style: none;
+  gap: 20px;
+  padding: 5px;
+  justify-content: center;
+  background-color: ${Colors.borderColor};
+  @media (max-width: 800px) {
+    flex-wrap: wrap;
+  }
+  button {
+    padding: 8px 15px;
+    border: none;
+    color: ${Colors.whiteColor};
+    background-color: ${Colors.tertiaryColor};
+    border-radius: 10px;
+    font-weight: bold;
+  }
+`;
 
 const DestinationsPage = () => {
   const dispatch = useDispatch();
@@ -87,9 +106,19 @@ const DestinationsPage = () => {
   if (destinationList.length === 0) {
     imageList(dispatch);
   }
+  const handleOnChangeLocation = (location) => {
+    imageList(dispatch, location);
+  };
   return (
     <>
       {toast.length > 0 && <ErrorToast>{toast}</ErrorToast>}
+      <LoactionContainer as="ul">
+        {locations.map((item) => (
+          <li key={item}>
+            <button onClick={() => handleOnChangeLocation(item)}>{item}</button>
+          </li>
+        ))}
+      </LoactionContainer>
       <CardContainer>
         {destinationList.map((destination) => (
           <Card

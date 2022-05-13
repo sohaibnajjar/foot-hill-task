@@ -66,7 +66,9 @@ const tableHeadData = [
 const WishlistPage = () => {
   const dispatch = useDispatch();
   const wishList = useSelector((state) => state.wishList.wishListItems);
-
+  const destinationList = useSelector(
+    (state) => state.destinations.destinationList
+  );
   const handleOnDelete = (tableRow) => {
     dispatch(deleteWishListItem(tableRow.id));
     dispatch(removeDetinationFromWishList(tableRow));
@@ -77,7 +79,8 @@ const WishlistPage = () => {
   };
   useEffect(() => {
     localStorage.setItem("wishList", JSON.stringify(wishList));
-  }, [wishList]);
+    localStorage.setItem("destinationList", JSON.stringify(destinationList));
+  }, [wishList, destinationList]);
 
   return (
     <Flex>

@@ -60,6 +60,8 @@ const DestinationsPage = () => {
   const destinationList = useSelector(
     (state) => state.destinations.destinationList
   );
+  const wishList = useSelector((state) => state.wishList.wishListItems);
+
   const [toast, setToast] = useState("");
 
   const handleOnAddToWishList = (item) => {
@@ -76,7 +78,8 @@ const DestinationsPage = () => {
 
   useEffect(() => {
     localStorage.setItem("destinationList", JSON.stringify(destinationList));
-  }, [destinationList]);
+    localStorage.setItem("wishList", JSON.stringify(wishList));
+  }, [destinationList, wishList]);
 
   return (
     <>

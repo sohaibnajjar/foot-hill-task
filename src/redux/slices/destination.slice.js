@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
   addDestinationReducer,
-  removeDetinationFromWishListReducer,
+  removeDestinationFromWishListReducer,
 } from "../reducers/destination.reducer";
 
 export const destinationSlice = createSlice({
@@ -55,12 +55,12 @@ export const destinationSlice = createSlice({
   // destination reducers
   reducers: {
     addDestination: addDestinationReducer,
-    removeDetinationFromWishList: removeDetinationFromWishListReducer,
+    removeDestinationFromWishList: removeDestinationFromWishListReducer,
   },
 });
 
 //Destinations action creaters
-export const { addDestination, removeDetinationFromWishList } =
+export const { addDestination, removeDestinationFromWishList } =
   destinationSlice.actions;
 
 // default export to store

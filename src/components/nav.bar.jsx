@@ -1,9 +1,9 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import paths from "../routes/paths";
-
+import { Colors } from "../styled.components/colors";
 const NavContainer = styled.nav`
-  background-color: #857ee9;
+  background-color: ${Colors.navBarColor};
   height: 3em;
   display: flex;
   align-items: center;

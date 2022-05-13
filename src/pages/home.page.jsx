@@ -1,10 +1,6 @@
 import styled from "styled-components";
+import { FlexCenter } from "../styled.components/styled.components";
 
-const ShowChase = styled.div`
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-`;
 const HeaderContainer = styled.section`
   display: flex;
   flex-direction: column;
@@ -16,7 +12,7 @@ const HeaderContainer = styled.section`
 `;
 const HomePage = () => {
   return (
-    <ShowChase>
+    <FlexCenter>
       <HeaderContainer>
         <h1>welcome to home page </h1>
         <p>
@@ -25,7 +21,7 @@ const HomePage = () => {
           aut, fugit animi ratione ullam quos dolore! Nesciunt, quo!
         </p>
       </HeaderContainer>
-    </ShowChase>
+    </FlexCenter>
   );
 };
 

@@ -6,7 +6,7 @@ export const addDestinationReducer = (state, action) => {
   );
 };
 
-export const removeDetinationFromWishListReducer = (state, action) => {
+export const removeDestinationFromWishListReducer = (state, action) => {
   state.destinationList = state.destinationList.map((destination) =>
     destination.id === action.payload.id ? action.payload : destination
   );

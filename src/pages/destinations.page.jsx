@@ -5,6 +5,11 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addDestination } from "../redux/slices/destination.slice";
 import { addwishListItem } from "../redux/slices/wish.list.slice";
+import {
+  ErrorToast,
+  FlexSpaceBetween,
+} from "../styled.components/styled.components";
+import { Colors } from "../styled.components/colors";
 
 const CardContainer = styled.div`
   margin: 20px;
@@ -17,44 +22,31 @@ const CardContainer = styled.div`
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   }
 `;
-const Card = styled.div`
+const Card = styled(FlexSpaceBetween)`
   max-height: 250px;
-  background-color: #f3f3f3;
-  border: 2px solid #999;
+  background-color: ${Colors.cardBackGround};
+  border: 2px solid ${Colors.borderColor};
   border-radius: 10px;
-  display: flex;
-  justify-content: space-between;
   padding: 10px;
 `;
-const CardInformation = styled.div`
-  display: flex;
+const CardInformation = styled(FlexSpaceBetween)`
   flex-direction: column;
-  justify-content: space-between;
   width: 100%;
+  p {
+    max-height: 90px;
+    overflow-y: auto;
+  }
 `;
-const CardHeader = styled.h1``;
-const CardDescription = styled.p`
-  max-height: 90px;
-  overflow-y: auto;
-`;
+
 const CardState = styled.div`
-  background-color: ${(props) => (props.isInWishList ? "#abf5a1" : "#ff7676")};
+  background-color: ${(props) =>
+    props.isInWishList ? Colors.successColor : Colors.dangerColor};
   padding: 10px;
   width: 100%;
   text-align: center;
   font-weight: bold;
 `;
-const ErrorToast = styled.div`
-  position: fixed;
-  top: 25px;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #ff7676;
-  padding: 10px 20px;
-  text-align: center;
-  border-radius: 10px 20px;
-  font-weight: bold;
-`;
+
 const DestinationsPage = () => {
   const dispatch = useDispatch();
   const destinationList = useSelector(
@@ -92,8 +84,8 @@ const DestinationsPage = () => {
           >
             <CardInformation>
               <div>
-                <CardHeader>{destination.name}</CardHeader>
-                <CardDescription>{destination.description}</CardDescription>
+                <h1>{destination.name}</h1>
+                <p>{destination.description}</p>
               </div>
               <CardState isInWishList={destination.isOnWishList}>
                 {destination.isOnWishList

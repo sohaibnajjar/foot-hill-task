@@ -14,11 +14,11 @@ const CardContainer = styled.div`
   margin: 20px;
   display: grid;
   grid-template-columns: repeat(4, minmax(300px, 1fr));
-  grid-template-rows: repeat(3, 1fr);
+  grid-auto-rows: 1fr;
   justify-items: stretch;
   gap: 20px;
   @media (max-width: 1200px) {
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   }
 `;
 const Card = styled(FlexSpaceBetween)`
@@ -27,6 +27,7 @@ const Card = styled(FlexSpaceBetween)`
   border: 2px solid ${Colors.borderColor};
   border-radius: 10px;
   padding: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 `;
 const CardInformation = styled.div`
   flex-direction: column;
@@ -40,6 +41,11 @@ const CardInformation = styled.div`
 `;
 const ImageContainer = styled.div`
   width: 100%;
+  img {
+    border-radius: 10px;
+    height: 180px;
+    width: 100%;
+  }
 `;
 const CardState = styled.div`
   background-color: ${(props) =>
@@ -48,6 +54,7 @@ const CardState = styled.div`
   width: 100%;
   text-align: center;
   font-weight: bold;
+  border-radius: 10px;
 `;
 
 const DestinationsPage = () => {
@@ -87,11 +94,7 @@ const DestinationsPage = () => {
           >
             <div>
               <ImageContainer>
-                <img
-                  src={destination.destinationImage}
-                  alt="destination"
-                  width="100%"
-                />
+                <img src={destination.destinationImage} alt="destination" />
               </ImageContainer>
               <CardInformation>
                 <h1>{destination.name}</h1>

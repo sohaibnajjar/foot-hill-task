@@ -12,7 +12,8 @@ export const destinationSlice = createSlice({
         id: 1,
         name: "hawai",
         description: "im in hawai",
-        destinationImage: MyImage,
+        destinationImage:
+          "https://images.unsplash.com/photo-1582790606212-791416742d63?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE0fHx8ZW58MHx8fHw%3D&w=1000&q=80",
         isOnWishList: false,
         isComplete: false,
       },

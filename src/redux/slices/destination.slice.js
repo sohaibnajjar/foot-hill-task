@@ -3,7 +3,7 @@ import {
   addDestinationReducer,
   removeDestinationFromWishListReducer,
 } from "../reducers/destination.reducer";
-
+import MyImage from "../../asset/image.png";
 export const destinationSlice = createSlice({
   name: "destinations",
   initialState: {
@@ -12,7 +12,7 @@ export const destinationSlice = createSlice({
         id: 1,
         name: "hawai",
         description: "im in hawai",
-        // destinationImage: MyImage,
+        destinationImage: MyImage,
         isOnWishList: false,
         isComplete: false,
       },
@@ -21,7 +21,7 @@ export const destinationSlice = createSlice({
         name: "maldiv",
         description:
           "   Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandaeautem quod accusantium totam minus dolor nostrum obcaecati hic,alias ab? Reiciendis deserunt itaque debitis corporis ratione velitpariatur sint modi.",
-        // destinationImage: MyImage,
+        destinationImage: MyImage,
         isOnWishList: false,
         isComplete: false,
       },
@@ -29,7 +29,7 @@ export const destinationSlice = createSlice({
         id: 3,
         name: "hebron",
         description: "im in hebron",
-        // destinationImage: MyImage,
+        destinationImage: MyImage,
         isOnWishList: false,
         isComplete: false,
       },
@@ -37,7 +37,7 @@ export const destinationSlice = createSlice({
         id: 4,
         name: "dubi",
         description: "im in dubi",
-        // destinationImage: MyImage,
+        destinationImage: MyImage,
         isOnWishList: false,
         isComplete: false,
       },
@@ -45,7 +45,7 @@ export const destinationSlice = createSlice({
         id: 5,
         name: "torky",
         description: "im in torky",
-        // destinationImage: MyImage,
+        destinationImage: MyImage,
         isOnWishList: false,
         isComplete: false,
       },

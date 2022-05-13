@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import MyImage from "../asset/image.jpeg";
 
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,30 +13,34 @@ import { Colors } from "../styled.components/colors";
 const CardContainer = styled.div`
   margin: 20px;
   display: grid;
-  grid-template-columns: repeat(3, minmax(350px, 1fr));
+  grid-template-columns: repeat(4, minmax(300px, 1fr));
   grid-template-rows: repeat(3, 1fr);
   justify-items: stretch;
   gap: 20px;
-  @media (max-width: 1500px) {
+  @media (max-width: 1200px) {
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   }
 `;
 const Card = styled(FlexSpaceBetween)`
-  max-height: 250px;
+  flex-direction: column;
   background-color: ${Colors.cardBackGround};
   border: 2px solid ${Colors.borderColor};
   border-radius: 10px;
   padding: 10px;
 `;
-const CardInformation = styled(FlexSpaceBetween)`
+const CardInformation = styled.div`
   flex-direction: column;
+  text-align: left;
   width: 100%;
   p {
     max-height: 90px;
+    width: 100%;
     overflow-y: auto;
   }
 `;
-
+const ImageContainer = styled.div`
+  width: 100%;
+`;
 const CardState = styled.div`
   background-color: ${(props) =>
     props.isInWishList ? Colors.successColor : Colors.dangerColor};
@@ -82,20 +85,24 @@ const DestinationsPage = () => {
             key={destination.id}
             onClick={() => handleOnAddToWishList(destination)}
           >
-            <CardInformation>
-              <div>
+            <div>
+              <ImageContainer>
+                <img
+                  src={destination.destinationImage}
+                  alt="destination"
+                  width="100%"
+                />
+              </ImageContainer>
+              <CardInformation>
                 <h1>{destination.name}</h1>
                 <p>{destination.description}</p>
-              </div>
-              <CardState isInWishList={destination.isOnWishList}>
-                {destination.isOnWishList
-                  ? "this item is in wishlist"
-                  : "this item is not in wishlist "}
-              </CardState>
-            </CardInformation>
-            <div>
-              <img src={MyImage} alt="destination" width="100" height="100" />
+              </CardInformation>
             </div>
+            <CardState isInWishList={destination.isOnWishList}>
+              {destination.isOnWishList
+                ? "this item is in wishlist"
+                : "this item is not in wishlist "}
+            </CardState>
           </Card>
         ))}
       </CardContainer>

@@ -1,5 +1,4 @@
 import styled from "styled-components";
-
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addDestination } from "../redux/slices/destination.slice";
@@ -9,6 +8,7 @@ import {
   FlexSpaceBetween,
 } from "../styled.components/styled.components";
 import { Colors } from "../styled.components/colors";
+import { imageList } from "../services/services";
 
 const CardContainer = styled.div`
   margin: 20px;
@@ -33,6 +33,7 @@ const CardInformation = styled.div`
   flex-direction: column;
   text-align: left;
   width: 100%;
+  margin: 10px 0px;
   p {
     max-height: 90px;
     width: 100%;
@@ -83,6 +84,9 @@ const DestinationsPage = () => {
     localStorage.setItem("wishList", JSON.stringify(wishList));
   }, [destinationList, wishList]);
 
+  if (destinationList.length === 0) {
+    imageList(dispatch);
+  }
   return (
     <>
       {toast.length > 0 && <ErrorToast>{toast}</ErrorToast>}
@@ -94,10 +98,14 @@ const DestinationsPage = () => {
           >
             <div>
               <ImageContainer>
-                <img src={destination.destinationImage} alt="destination" />
+                <img
+                  loading="lazy"
+                  src={destination.destinationImage}
+                  alt="destination"
+                />
               </ImageContainer>
               <CardInformation>
-                <h1>{destination.name}</h1>
+                <h3>{destination.name}</h3>
                 <p>{destination.description}</p>
               </CardInformation>
             </div>

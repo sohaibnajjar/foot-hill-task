@@ -19,6 +19,12 @@ const NavList = styled.ul`
 `;
 const NavItem = styled(NavLink)`
   text-decoration: none;
+  transition: 0.5s;
+  padding: 5px;
+  color: ${Colors.whiteColor};
+  :hover {
+    background-color: ${Colors.secondaryColor};
+  }
 `;
 
 const NavBarComponent = () => {

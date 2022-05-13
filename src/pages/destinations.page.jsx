@@ -73,13 +73,11 @@ const DestinationsPage = () => {
       setToast("");
     }, 4000);
   };
+
   useEffect(() => {
     localStorage.setItem("destinationList", JSON.stringify(destinationList));
   }, [destinationList]);
 
-  useEffect(() => {
-    // const distinationListLS = localStorage.getItem("destinationList");
-  }, []);
   return (
     <>
       {toast.length > 0 && <ErrorToast>{toast}</ErrorToast>}

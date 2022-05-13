@@ -5,6 +5,7 @@ import {
   WishListItemIsComplete,
 } from "../redux/slices/wish.list.slice";
 import { removeDetinationFromWishList } from "../redux/slices/destination.slice";
+import { useEffect } from "react";
 
 const Flex = styled.div`
   display: flex;
@@ -64,7 +65,7 @@ const tableHeadData = [
 
 const WishlistPage = () => {
   const dispatch = useDispatch();
-  const wishList1 = useSelector((state) => state.wishList.wishListItems);
+  const wishList = useSelector((state) => state.wishList.wishListItems);
 
   const handleOnDelete = (tableRow) => {
     dispatch(deleteWishListItem(tableRow.id));
@@ -74,6 +75,9 @@ const WishlistPage = () => {
   const handleMakeItComplete = (id) => {
     dispatch(WishListItemIsComplete(id));
   };
+  useEffect(() => {
+    localStorage.setItem("wishList", JSON.stringify(wishList));
+  }, [wishList]);
 
   return (
     <Flex>
@@ -87,7 +91,7 @@ const WishlistPage = () => {
             </tr>
           </thead>
           <tbody>
-            {wishList1.map((tableBodyRow) => (
+            {wishList.map((tableBodyRow) => (
               <tr key={tableBodyRow.id}>
                 <td>{tableBodyRow.name}</td>
                 <td>{tableBodyRow.description}</td>

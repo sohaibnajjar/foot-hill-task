@@ -1,9 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
+import {
+  addDestinationReducer,
+  removeDetinationFromWishListReducer,
+} from "../reducers/destination.reducer";
 
 export const destinationSlice = createSlice({
   name: "destinations",
   initialState: {
-    destinationList: [
+    destinationList: JSON.parse(localStorage.getItem("destinationList")) ?? [
       {
         id: 1,
         name: "hawai",
@@ -47,24 +51,17 @@ export const destinationSlice = createSlice({
       },
     ],
   },
+
+  // destination reducers
   reducers: {
-    // reducers
-    addDestination: (state, action) => {
-      state.destinationList = state.destinationList.map((destination) =>
-        destination.id === action.payload.id
-          ? { ...action.payload, isOnWishList: !action.payload.isOnWishList }
-          : destination
-      );
-    },
-    removeDetinationFromWishList: (state, action) => {
-      state.destinationList = state.destinationList.map((destination) =>
-        destination.id === action.payload.id ? action.payload : destination
-      );
-    },
+    addDestination: addDestinationReducer,
+    removeDetinationFromWishList: removeDetinationFromWishListReducer,
   },
 });
 
+//Destinations action creaters
 export const { addDestination, removeDetinationFromWishList } =
   destinationSlice.actions;
 
+// default export to store
 export default destinationSlice.reducer;

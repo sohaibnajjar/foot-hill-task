@@ -34,6 +34,7 @@ const Table = styled.table`
     max-width: 300px;
   }
   th {
+    padding: 0px 10px;
     text-align: center;
   }
 `;

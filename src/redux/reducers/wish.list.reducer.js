@@ -1,5 +1,9 @@
 export const addwishListItemReducer = (state, action) => {
-  state.wishListItems.push({ ...action.payload, isComplete: false });
+  state.wishListItems.push({
+    ...action.payload,
+    isOnWishList: true,
+    isComplete: false,
+  });
 };
 
 export const deleteWishListItemReducer = (state, action) => {

@@ -13,6 +13,7 @@ export const removeDestinationFromWishListReducer = (state, action) => {
       : destination
   );
 };
+
 export const fetchDestinationReducer = (state, action) => {
   state.destinationList = action.payload;
 };

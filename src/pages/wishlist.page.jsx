@@ -1,43 +1,19 @@
-import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import {
   deleteWishListItem,
   WishListItemIsComplete,
-} from "../redux/slices/wish.list.slice";
-import { removeDestinationFromWishList } from "../redux/slices/destination.slice";
+} from "../store/slices/wish.list.slice";
+import { FaTrashAlt } from "react-icons/fa";
+import { removeDestinationFromWishList } from "../store/slices/destination.slice";
 import { useEffect } from "react";
+import { EmptyPage } from "../styled.components/styled.components";
+import { InputTd, Table } from "../styled.components/styled.pages.components";
 import {
-  DangerButton,
-  EmptyPage,
-  FlexCenter,
-  SuccessButton,
-} from "../styled.components/styled.components";
-import { Colors } from "../styled.components/colors";
-
-const TableContainert = styled.div`
-  overflow-x: auto;
-  display: block;
-  width: 100%;
-`;
-const Table = styled.table`
-  min-width: 600px;
-  width: 100%;
-  tr:nth-child(even) {
-    background-color: ${Colors.cardBackGround};
-  }
-  td,
-  th {
-    text-align: left;
-    height: 50px;
-    padding-left: 1%;
-    border-bottom: 2px solid ${Colors.borderColor};
-    max-width: 300px;
-  }
-  th {
-    padding: 0px 10px;
-    text-align: center;
-  }
-`;
+  MainFlexContainer,
+  TableContainert,
+} from "../styled.components/styled.containers";
+import { Button } from "../styled.components/styled.buttons";
+import { CheckBox } from "../styled.components/styled.input";
 
 const tableHeadData = [
   "Destination Name",
@@ -67,7 +43,7 @@ const WishlistPage = () => {
   }, [wishList, destinationList]);
 
   return (
-    <FlexCenter>
+    <MainFlexContainer>
       {wishList.length > 0 ? (
         <TableContainert>
           <Table>
@@ -83,35 +59,30 @@ const WishlistPage = () => {
                 <tr key={tableBodyRow.id}>
                   <td>{tableBodyRow.name}</td>
                   <td>{tableBodyRow.description}</td>
-                  <td>
-                    {tableBodyRow.isComplete ? (
-                      <SuccessButton
-                        onClick={() => handleMakeItComplete(tableBodyRow.id)}
-                      >
-                        Complete
-                      </SuccessButton>
-                    ) : (
-                      <DangerButton
-                        onClick={() => handleMakeItComplete(tableBodyRow.id)}
-                      >
-                        Not Complete
-                      </DangerButton>
-                    )}
-                  </td>
-                  <td>
-                    <DangerButton onClick={() => handleOnDelete(tableBodyRow)}>
-                      remove
-                    </DangerButton>
-                  </td>
+                  <InputTd>
+                    <CheckBox
+                      checked={tableBodyRow.isComplete}
+                      onChange={() => handleMakeItComplete(tableBodyRow.id)}
+                    />
+                    <span></span>
+                  </InputTd>
+                  <InputTd>
+                    <Button
+                      bgColor="black"
+                      onClick={() => handleOnDelete(tableBodyRow)}
+                    >
+                      <FaTrashAlt color="white" />
+                    </Button>
+                  </InputTd>
                 </tr>
               ))}
             </tbody>
           </Table>
         </TableContainert>
       ) : (
-        <EmptyPage>there is no items in this list</EmptyPage>
+        <EmptyPage>there are no items in this list</EmptyPage>
       )}
-    </FlexCenter>
+    </MainFlexContainer>
   );
 };
 

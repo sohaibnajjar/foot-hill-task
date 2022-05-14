@@ -1,14 +1,18 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Layout from "./routes/layout";
-import paths from "./routes/paths";
+import Layout from "./pages/_layout";
+import routes from "./routes";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route element={<Layout />}>
-          {paths.map((page) => (
-            <Route key={page.pathName} path={page.to} element={<page.page />} />
+          {routes.map((route) => (
+            <Route
+              key={route.to}
+              path={route.to}
+              element={<route.component />}
+            />
           ))}
         </Route>
       </Routes>

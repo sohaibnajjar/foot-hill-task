@@ -4,19 +4,12 @@ import { addDestination } from "../store/slices/destination.slice";
 import { addwishListItem } from "../store/slices/wish.list.slice";
 import { EmptyPage, Toast } from "../styled.components/styled.components";
 import { imageList } from "../services/services";
-import { FaHeart, FaRegHeart } from "react-icons/fa";
 import useToast from "../custom.hooks/toast.hook";
-import { Card } from "../styled.components/styled.pages.components";
 import {
   CardContainer,
-  ImageContainer,
   MainContainer,
-  MainFlexContainer,
 } from "../styled.components/styled.containers";
-import {
-  InWishListButton,
-  WishListButton,
-} from "../styled.components/styled.buttons";
+import CardComponent from "../components/card.component";
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -57,7 +50,6 @@ const HomePage = () => {
   useEffect(() => {
     fetchInitialData();
   }, []);
-  console.log(toast);
   return (
     <MainContainer>
       {toast.description.length > 0 && (
@@ -66,31 +58,11 @@ const HomePage = () => {
       {destinationList.length === 0 && <EmptyPage>loading ...</EmptyPage>}
       <CardContainer>
         {destinationList.map((destination) => (
-          <Card
-            justify="none"
-            direction="column"
+          <CardComponent
             key={destination.id}
-            onClick={() => handleOnAddToWishList(destination)}
-          >
-            <img
-              loading="lazy"
-              src={destination.destinationImage}
-              alt="destination"
-            />
-            <MainFlexContainer justify="space-between" padding="10px ">
-              <h3>{destination.name}</h3>
-              {destination.isOnWishList ? (
-                <sup>
-                  In wish list <InWishListButton size="30px" />
-                </sup>
-              ) : (
-                <sup>
-                  Add to wish list <WishListButton size="30px" />
-                </sup>
-              )}
-            </MainFlexContainer>
-            <p>{destination.description}</p>
-          </Card>
+            destination={destination}
+            handleOnAddToWishList={handleOnAddToWishList}
+          />
         ))}
       </CardContainer>
     </MainContainer>

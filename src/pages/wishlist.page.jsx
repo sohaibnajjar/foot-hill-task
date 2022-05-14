@@ -5,7 +5,7 @@ import {
 } from "../store/slices/wish.list.slice";
 import { FaTrashAlt } from "react-icons/fa";
 import { removeDestinationFromWishList } from "../store/slices/destination.slice";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { EmptyPage } from "../styled.components/styled.components";
 import { InputTd, Table } from "../styled.components/styled.pages.components";
 import {
@@ -14,6 +14,7 @@ import {
 } from "../styled.components/styled.containers";
 import { Button } from "../styled.components/styled.buttons";
 import { CheckBox } from "../styled.components/styled.input";
+import ModalComponent from "../components/modal.component";
 
 const tableHeadData = [
   "Destination Name",
@@ -21,9 +22,11 @@ const tableHeadData = [
   "Checked",
   "Remove",
 ];
+const modalInitData = { modalIsOpen: false, row: {} };
 
 const WishlistPage = () => {
   const dispatch = useDispatch();
+  const [modalState, setModalState] = useState(modalInitData);
   const wishList = useSelector((state) => state.wishList.wishListItems);
   const destinationList = useSelector(
     (state) => state.destinations.destinationList
@@ -44,6 +47,11 @@ const WishlistPage = () => {
 
   return (
     <MainFlexContainer>
+      <ModalComponent
+        modalState={modalState}
+        handleOnDelete={handleOnDelete}
+        setModalState={setModalState}
+      />
       {wishList.length > 0 ? (
         <TableContainert>
           <Table>
@@ -68,10 +76,12 @@ const WishlistPage = () => {
                   </InputTd>
                   <InputTd>
                     <Button
-                      bgColor="black"
-                      onClick={() => handleOnDelete(tableBodyRow)}
+                      bgColor="#000"
+                      onClick={() =>
+                        setModalState({ modalIsOpen: true, row: tableBodyRow })
+                      }
                     >
-                      <FaTrashAlt color="white" />
+                      <FaTrashAlt color="#fff" />
                     </Button>
                   </InputTd>
                 </tr>

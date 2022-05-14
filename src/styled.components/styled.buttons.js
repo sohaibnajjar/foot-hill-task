@@ -9,6 +9,8 @@ export const Button = styled.button`
   width: ${(props) => (props.width ? props.width : "30px")};
   padding: 5px;
   text-align: center;
+  color: ${(props) => (props.color ? props.color : "none")};
+  font-weight: bold;
 `;
 export const WishListButton = styled(FaRegHeart)`
   transition: 0.5s;

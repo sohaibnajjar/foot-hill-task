@@ -5,7 +5,11 @@ import { InWishListButton } from "../styled.components/styled.buttons";
 const routes = [
   { pathName: "Destinations Page", component: HomePage, to: "/" },
   {
-    pathName: <InWishListButton size="30px" />,
+    pathName: (
+      <>
+        <sup>Wish List</sup> <InWishListButton size="20px" />
+      </>
+    ),
     component: WishlistPage,
     to: "wishlist",
   },

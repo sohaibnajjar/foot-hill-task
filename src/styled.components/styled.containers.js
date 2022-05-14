@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { theme } from "./color.theme";
 
 export const MainContainer = styled.div`
   max-width: 1440px;
@@ -14,7 +13,8 @@ export const MainFlexContainer = styled.div`
   justify-content: ${(props) => (props.justify ? props.justify : "center")};
   align-items: ${(props) => (props.align ? props.align : "center")};
   width: 100%;
-  padding: ${(props) => (props.padding ? props.padding : "none")}; ;
+  padding: ${(props) => (props.padding ? props.padding : "none")};
+  background-color: ${(props) => (props.bgColor ? props.bgColor : "none")}; ;
 `;
 
 export const TableContainert = styled.div`

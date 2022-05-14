@@ -4,7 +4,7 @@ import { MainFlexContainer } from "../styled.components/styled.containers";
 import { Button } from "../styled.components/styled.buttons";
 
 const Modal = styled.div`
-  display: ${(props) => (props.display === true ? "flex" : "none")};
+  display: ${(props) => (props.isOpen === true ? "flex" : "none")};
   position: fixed;
   z-index: 1;
   left: 0;
@@ -29,7 +29,7 @@ const ModalContainer = styled(MainFlexContainer)`
 
 const ModalComponent = ({ modalState, handleOnDelete, setModalState }) => {
   return (
-    <Modal display={modalState.modalIsOpen}>
+    <Modal isOpen={modalState.modalIsOpen}>
       <ModalContainer direction="column">
         <div>are you sure ?</div>
         <MainFlexContainer gap="20px">

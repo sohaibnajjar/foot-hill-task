@@ -6,7 +6,7 @@ import {
 import { FaTrashAlt } from "react-icons/fa";
 import { removeDestinationFromWishList } from "../store/slices/destination.slice";
 import { useEffect, useState } from "react";
-import { EmptyPage } from "../styled.components/styled.components";
+import { EmptyPage, Toast } from "../styled.components/styled.components";
 import { InputTd, Table } from "../styled.components/styled.pages.components";
 import {
   MainFlexContainer,
@@ -15,6 +15,8 @@ import {
 import { Button } from "../styled.components/styled.buttons";
 import { CheckBox } from "../styled.components/styled.input";
 import ModalComponent from "../components/modal.component";
+import useToast from "../custom.hooks/toast.hook";
+import { theme } from "../styled.components/color.theme";
 
 const tableHeadData = [
   "Destination Name",
@@ -26,6 +28,7 @@ const modalInitData = { modalIsOpen: false, row: {} };
 
 const WishlistPage = () => {
   const dispatch = useDispatch();
+  const [toast, popToast] = useToast();
   const [modalState, setModalState] = useState(modalInitData);
   const wishList = useSelector((state) => state.wishList.wishListItems);
   const destinationList = useSelector(
@@ -34,6 +37,10 @@ const WishlistPage = () => {
   const handleOnDelete = (tableRow) => {
     dispatch(deleteWishListItem(tableRow.id));
     dispatch(removeDestinationFromWishList(tableRow));
+    popToast({
+      description: "Wish List item Deleted successfully  ",
+      state: "success",
+    });
   };
 
   const handleMakeItComplete = (id) => {
@@ -47,6 +54,9 @@ const WishlistPage = () => {
 
   return (
     <MainFlexContainer>
+      {toast.description.length > 0 && (
+        <Toast status={toast.state}>{toast.description}</Toast>
+      )}
       <ModalComponent
         modalState={modalState}
         handleOnDelete={handleOnDelete}
@@ -76,7 +86,7 @@ const WishlistPage = () => {
                   </InputTd>
                   <InputTd>
                     <Button
-                      bgColor="#000"
+                      bgColor="red"
                       onClick={() =>
                         setModalState({ modalIsOpen: true, row: tableBodyRow })
                       }

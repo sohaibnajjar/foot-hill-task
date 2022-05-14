@@ -7,7 +7,6 @@ const useToast = () => {
     setTimeout(() => {
       setToast({ description: "" });
     }, 4000);
-    console.log("toast out");
   };
   return [toast, popToast];
 };

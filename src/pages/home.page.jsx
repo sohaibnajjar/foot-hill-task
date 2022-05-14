@@ -13,7 +13,7 @@ import CardComponent from "../components/card.component";
 
 const HomePage = () => {
   const dispatch = useDispatch();
-  const [toast, setToast] = useToast();
+  const [toast, popToast] = useToast();
   const destinationList = useSelector(
     (state) => state.destinations.destinationList
   );
@@ -23,13 +23,13 @@ const HomePage = () => {
     if (!item.isOnWishList) {
       dispatch(addDestination(item));
       dispatch(addwishListItem(item));
-      setToast({
+      popToast({
         description: "added to wish list successfully",
         state: "success",
       });
       return;
     }
-    setToast({ description: "you cant add it to wishlist", state: "error" });
+    popToast({ description: "you cant add it to wishlist", state: "error" });
   };
 
   useEffect(() => {
@@ -42,7 +42,7 @@ const HomePage = () => {
       try {
         await imageList(dispatch);
       } catch (error) {
-        setToast({ description: "couldnt get the data", state: "error" });
+        popToast({ description: "couldnt get the data", state: "error" });
       }
     }
   };

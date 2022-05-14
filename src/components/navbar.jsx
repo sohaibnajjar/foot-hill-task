@@ -4,7 +4,7 @@ import { NavItem, NavList } from "../styled.components/styled.navbar";
 
 const NavBarComponent = () => {
   return (
-    <NavContainer maxWidth="none" direction="column">
+    <NavContainer maxWidth="none">
       <NavList justify="space-between" padding="0px 30px" as="ul" gap="20px">
         <div></div>
         {routes.map((route) => (

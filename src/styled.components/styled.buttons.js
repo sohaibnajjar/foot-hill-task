@@ -11,6 +11,9 @@ export const Button = styled.button`
   text-align: center;
   color: ${(props) => (props.color ? props.color : "none")};
   font-weight: bold;
+  :hover {
+    filter: brightness(85%);
+  }
 `;
 export const WishListButton = styled(FaRegHeart)`
   transition: 0.5s;

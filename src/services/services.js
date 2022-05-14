@@ -9,7 +9,7 @@ export const imageList = async (dispatch) => {
         Authorization: `Client-ID 1k53ErbJANaGA2R-XroyIM52I0GhF7O03Bh2PHpkVak`,
       },
       params: {
-        query: "city",
+        query: "destinations",
         per_page: 20,
         orientation: "landscape",
       },
@@ -28,5 +28,3 @@ export const imageList = async (dispatch) => {
     throw error;
   }
 };
-
-export const locations = ["camping", "hiking", "fishing", "nature"];
